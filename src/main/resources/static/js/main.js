@@ -27,8 +27,18 @@ function connect(event) {
         stompClient = Stomp.over(socket);
 
         stompClient.connect({}, onConnected, onError);
+      
     }
     event.preventDefault();
+}
+
+
+function disconnect(event) {
+    username = document.querySelector('#name').value.trim();
+    console.log("username-page+++", username);
+    stompClient.disconnect();
+    window.location.replace("index.html");
+    return "username-page";
 }
 
 
@@ -119,3 +129,4 @@ function getAvatarColor(messageSender) {
 
 usernameForm.addEventListener('submit', connect, true)
 messageForm.addEventListener('submit', sendMessage, true)
+chatHeader.addEventListener('button', disconnect, true)
