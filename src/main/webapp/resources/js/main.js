@@ -1,9 +1,11 @@
 'use strict';
 
 var usernamePage = document.querySelector('#username-page');
+var userContactPage = document.querySelector('#user-contact-page');
 var chatPage = document.querySelector('#chat-page');
 var usernameForm = document.querySelector('#usernameForm');
 var messageForm = document.querySelector('#messageForm');
+var contactForm = document.querySelector('#contactForm');
 var messageInput = document.querySelector('#message');
 var messageArea = document.querySelector('#messageArea');
 var connectingElement = document.querySelector('.connecting');
@@ -21,6 +23,7 @@ function connect(event) {
 
     if(username) {
         usernamePage.classList.add('hidden');
+        userContactPage.classList.add('hidden');
         chatPage.classList.remove('hidden');
 
         var socket = new SockJS('/ws');
@@ -32,13 +35,19 @@ function connect(event) {
     event.preventDefault();
 }
 
-
+function contactList(event){
+	 userContactPage.classList.remove('hidden');
+	    chatPage.classList.add('hidden');
+	    usernamePage.classList.add('hidden')
+}
 function disconnect(event) {
     username = document.querySelector('#name').value.trim();
     console.log("username-page+++", username);
     stompClient.disconnect();
-    window.location.replace("index.html");
-    return "username-page";
+    userContactPage.classList.add('hidden');
+    chatPage.classList.add('hidden');
+    usernamePage.classList.remove('hidden');
+//    return "username-page";
 }
 
 
@@ -73,6 +82,22 @@ function sendMessage(event) {
         };
 
         stompClient.send("/app/chat.sendMessage", {}, JSON.stringify(chatMessage));
+        messageInput.value = '';
+    }
+    event.preventDefault();
+}
+
+function saveContact(event) {
+    var messageContent = messageInput.value.trim();
+
+    /*if(messageContent && stompClient) {
+        var contact = {
+            sender: username,
+            content: messageInput.value,
+            type: 'CHAT'
+        };*/
+
+        stompClient.send("/app/contact.save", {}, JSON.stringify(contact));
         messageInput.value = '';
     }
     event.preventDefault();
@@ -129,4 +154,5 @@ function getAvatarColor(messageSender) {
 
 usernameForm.addEventListener('submit', connect, true)
 messageForm.addEventListener('submit', sendMessage, true)
-chatHeader.addEventListener('button', disconnect, true)
+contactForm.addEventListener('submit', saveContact, true)
+
