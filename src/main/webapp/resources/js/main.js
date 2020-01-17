@@ -6,6 +6,7 @@ var chatPage = document.querySelector('#chat-page');
 var usernameForm = document.querySelector('#usernameForm');
 var messageForm = document.querySelector('#messageForm');
 var contactForm = document.querySelector('#contactForm');
+//var contactListForm = document.querySelector('#contactListForm');
 var messageInput = document.querySelector('#message');
 var messageArea = document.querySelector('#messageArea');
 var connectingElement = document.querySelector('.connecting');
@@ -17,6 +18,20 @@ var colors = [
     '#2196F3', '#32c787', '#00BCD4', '#ff5652',
     '#ffc107', '#ff85af', '#FF9800', '#39bbb0'
 ];
+
+$('#contactListForm').change(function(){
+	alert('updated!');
+});
+
+/*$('#contactListForm').change(function(){
+	alert('Contact list updated!');
+	var value= $(this).val();
+	var id= $(this).attr("id");
+	var namee= $(this).attr("name");
+	console.log("value", value);
+	console.log("id", id);
+	console.log("name", name);
+});*/
 
 function connect(event) {
     username = document.querySelector('#name').value.trim();
@@ -99,7 +114,7 @@ function saveContact(event) {
 
         stompClient.send("/app/contact.save", {}, JSON.stringify(contact));
         messageInput.value = '';
-    }
+//    }
     event.preventDefault();
 }
 

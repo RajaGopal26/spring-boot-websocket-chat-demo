@@ -3,7 +3,7 @@
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <html>
 <head>
-	<title>Spring 3 MVC Multipe Row Submit - viralpatel.net</title>
+	<title>Spring 3 MVC Multipe Row Submit </title>
 </head>
 <body>
 <h2>Show Contacts</h2>

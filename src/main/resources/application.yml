@@ -10,11 +10,11 @@ spring:
       url: jdbc:mysql://192.168.2.19:3306/RAJA_DB
       username: "0050"
       password: "Aalam%153"
-      driver-class-name: com.mysql.jdbc.Driver
+      driver-class-name: com.mysql.cj.jdbc.Driver
   jpa:
     database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
     show-sql: true
     hibernate:
-      ddl-auto: create
+      ddl-auto: update
       use-new-id-generator-mappings: true   
        

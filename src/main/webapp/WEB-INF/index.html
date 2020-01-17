@@ -1,49 +1,11 @@
-<%@taglib uri="http://www.springframework.org/tags" prefix="spring"%>
-<%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
-<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<!DOCTYPE html>
 <html>
+
 <head>
-<title>Spring 3 MVC Multipe Row Submit</title>
-</head>
-<body>
-
-	<h2>Spring MVC Multiple Row Form Submit</h2>
-
-	<form:form method="post" action="save">
-		<table>
-			<tr>
-				<th>No.</th>
-				<th>Name</th>
-				<th>Lastname</th>
-				<th>Email</th>
-				<th>Phone</th>
-			</tr>
-			<c:forEach items="${contactForm}" var="contact" varStatus="status">
-				<tr>
-					<td align="center">${status.count}</td>
-					<td><input path="contactForm[${status.index}].name"
-						value="${contact.firstname}" /></td>
-					<td><input path="contactForm[${status.index}].lastname"
-						name="contactForm[${status.index}].lastname"
-						value="${contact.lastname}" /></td>
-					<td><input path="contactForm[${status.index}].email"
-						name="contactForm[${status.index}].email" value="${contact.email}" /></td>
-					<td><input path="contactForm[${status.index}].name"
-						name="contactForm[${status.index}].phone" value="${contact.phone}" /></td>
-				</tr>
-			</c:forEach>
-		</table>
-		<br />
-		<input click=update() type="submit" value="Save" />
-
-	</form:form>
-	<script
-		src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-	<script>
-	function update(){
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script>
         $(document).ready(function () {
-        	var contactForm;
-        	let formElements = [];
+            let formElements = [];
             let changedFields = [];
             let dataJson = {};
             $('#testForm input,#testForm select').each(function () {
@@ -54,7 +16,6 @@
             console.log("formElements ", formElements);
 
             $('#testForm input,#testForm select').change(function () {
-            	alert('table is changed');
                 let alreadyExists = false;
 
                 if (changedFields.length > 0) {
@@ -64,7 +25,6 @@
                         }
                         if (alreadyExists) {
                             changedFields.pop(c);
-                            console.log("c popped " + c);
                             console.log("c popped", c);
                         }
                     }
@@ -91,9 +51,20 @@
                      }
                  }
              }); */
-//             contactForm= changedFields;
         });
-	}
     </script>
+</head>
+
+<body>
+
+    <form id="testForm" action="">
+        <input type="text" name="a">
+        <input type="text" name="b">
+        <input type="text" name="c">
+        <button type="button" id="subBtn"> Submit</button>
+    </form>
+
+
 </body>
+
 </html>

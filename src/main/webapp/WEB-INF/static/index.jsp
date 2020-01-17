@@ -91,7 +91,7 @@
 			</div>
 			<div style="padding: 15px;">
 				<!-- name="contactForm" nameForm="contactForm" -->
-				<form id="contactForm" name="contactForm" nameForm="contactForm" modelAttribute="contactForm">
+				<form id="contactForm" name="contactForm" nameForm="contactForm" modelAttribute="contactForm" method="post" action="save">
 					<span class="fieldItem"> First name: </span> <input value="${contact.firstname}" class="txtBox"
 						type="text" name="firstname"> <br> <span
 						class="fieldItem"> Last name: </span> <input class="txtBox"
